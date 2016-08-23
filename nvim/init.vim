@@ -18,6 +18,7 @@ Plug 'benjie/neomake-local-eslint.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'flowtype/vim-flow'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -49,6 +50,7 @@ colorscheme OceanicNext
 " colorscheme gruvbox
 set background=dark    " Setting dark mode
 
+" set omnifunc=syntaxcomplete#Complete
 
 """""""""""""""""""
 " Plugin settings
@@ -70,9 +72,17 @@ set background=dark    " Setting dark mode
 "    \ }
 " let g:neomake_javascript_enabled_makers = ['eslint']
 
+
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
+
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:deoplete#enable_at_startup = 1
 let g:AutoPairsFlyMode = 0
+
+" flowtype
+let g:flow#omnifunc = 0
+
 
 set statusline+=%{fugitive#statusline()}
 
