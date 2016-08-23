@@ -17,7 +17,7 @@ Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-
+Plug 'terryma/vim-multiple-cursors'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -75,6 +75,12 @@ let g:deoplete#enable_at_startup = 1
 let g:AutoPairsFlyMode = 0
 
 set statusline+=%{fugitive#statusline()}
+
+" http://vim.wikia.com/wiki/Find_in_files_within_Vim
+set grepprg=ag\ --vimgrep
+
+nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
+
 
 " Key mapping
 :imap jj <ESC>
