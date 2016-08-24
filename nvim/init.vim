@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'flowtype/vim-flow'
 Plug 'zchee/deoplete-jedi'
+Plug 'scrooloose/nerdcommenter'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -78,17 +79,24 @@ let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:deoplete#enable_at_startup = 1
 
-" Use Deoplete.
+let g:python3_host_prog = '/Users/yongdoree/.pyenv/versions/neovim3/bin/python'
 let g:deoplete#enable_at_startup = 1
-
-let g:python3_host_prog = '/Users/yongdoree/.pyenv/versions/3.5.1/envs/neovim3/bin'
 
 " Let <Tab> also do completion
-inoremap <silent><expr> <Tab>
+" inoremap <silent><expr> <Tab>
+" \ pumvisible() ? "\<C-n>" :
+" \ deoplete#mappings#manual_complete()
+
+imap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
 \ deoplete#mappings#manual_complete()
+
+function! s:check_back_space() "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1] =~ '\s'
+endfunction"}}}
 
 " Close the documentation window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -97,6 +105,7 @@ let g:AutoPairsFlyMode = 0
 
 " flowtype
 let g:flow#omnifunc = 0
+let g:flow#autoclose = 1
 
 
 set statusline+=%{fugitive#statusline()}
@@ -109,6 +118,7 @@ nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
 
 " Key mapping
 :imap jj <ESC>
+nnoremap <esc> :noh<return><esc>
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
