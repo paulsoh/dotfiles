@@ -1,7 +1,6 @@
 set nocompatible
 filetype off
 
-
 call plug#begin('~/.dotfiles/nvim/bundle')
 
 Plug 'The-NERD-Tree'
@@ -21,6 +20,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'flowtype/vim-flow'
 Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -106,6 +107,11 @@ let g:AutoPairsFlyMode = 0
 " flowtype
 let g:flow#omnifunc = 0
 let g:flow#autoclose = 1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 set statusline+=%{fugitive#statusline()}
