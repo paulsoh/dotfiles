@@ -10,6 +10,8 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neomake/neomake'
@@ -41,17 +43,21 @@ set ruler
 set autoindent
 set smartindent
 set tabstop=2 shiftwidth=2 expandtab
-set termguicolors
 
-syntax enable
+" Or if you have Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
 
+" Theme
 colorscheme OceanicNext
+syntax enable
 
 " let g:gruvbox_contrast_dark="hard"
 " let g:gruvbox_italic=1
 
 " colorscheme gruvbox
-set background=dark    " Setting dark mode
+" set background=dark    " Setting dark mode
 
 " set omnifunc=syntaxcomplete#Complete
 
@@ -113,6 +119,9 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+let g:airline_theme='oceanicnext'
+let g:airline_powerline_fonts=1
+
 
 set statusline+=%{fugitive#statusline()}
 
@@ -120,6 +129,7 @@ set statusline+=%{fugitive#statusline()}
 set grepprg=ag\ --vimgrep
 
 nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
+
 
 
 " Key mapping
