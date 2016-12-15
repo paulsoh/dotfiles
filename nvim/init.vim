@@ -23,7 +23,7 @@ Plug 'flowtype/vim-flow'
 Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'paulsoh/vim-snippets'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 
