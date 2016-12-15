@@ -1,14 +1,14 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.dotfiles/nvim/bundle')
+call plug#begin('~/dotfiles/nvim/bundle')
 
 Plug 'The-NERD-Tree'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
-Plug 'pangloss/vim-javascript'
+Plug 'w0ng/vim-hybrid'
 Plug 'mxw/vim-jsx'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
@@ -24,6 +24,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -53,6 +55,10 @@ endif
 colorscheme OceanicNext
 syntax enable
 
+"let g:hybrid_custom_term_colors = 1
+"colorscheme hybrid
+"set background=dark
+"colorscheme hybrid
 " let g:gruvbox_contrast_dark="hard"
 " let g:gruvbox_italic=1
 
@@ -89,6 +95,8 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 let g:python3_host_prog = '/Users/yongdoree/.pyenv/versions/neovim3/bin/python'
 let g:deoplete#enable_at_startup = 1
+
+let NERDSpaceDelims=1
 
 " Let <Tab> also do completion
 " inoremap <silent><expr> <Tab>
