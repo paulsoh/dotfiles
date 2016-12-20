@@ -10,8 +10,8 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'w0ng/vim-hybrid'
 Plug 'mxw/vim-jsx'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
+" Plug 'othree/yajs.vim'
+" Plug 'othree/es.next.syntax.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neomake/neomake'
@@ -24,8 +24,9 @@ Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'paulsoh/vim-snippets'
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
+Plug 'mattn/emmet-vim'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -93,7 +94,7 @@ let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-let g:python3_host_prog = '/Users/yongdoree/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/Users/paulsoh/.pyenv/versions/neovim3/bin/python'
 let g:deoplete#enable_at_startup = 1
 
 let NERDSpaceDelims=1
