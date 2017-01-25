@@ -32,7 +32,6 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'tell-k/vim-autopep8'
 
 
-
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
@@ -51,6 +50,8 @@ set ruler
 set autoindent
 set smartindent
 set tabstop=2 shiftwidth=2 expandtab
+
+au FileType python setl sw=4 sts=4 et
 
 " Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
@@ -137,6 +138,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:airline_theme='oceanicnext'
 let g:airline_powerline_fonts=1
 
+let python_highlight_all = 1
 
 set statusline+=%{fugitive#statusline()}
 
