@@ -30,6 +30,7 @@ Plug 'mattn/emmet-vim'
 Plug 'hdima/python-syntax'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'tell-k/vim-autopep8'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 
 function! DoRemote(arg)
@@ -101,7 +102,7 @@ let g:neomake_python_enabled_makers = ['flake8']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-let g:python3_host_prog = '/Users/yongdoree/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/Users/paulsoh/.pyenv/versions/neovim3/bin/python'
 let g:deoplete#enable_at_startup = 1
 
 let NERDSpaceDelims=1
