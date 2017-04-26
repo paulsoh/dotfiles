@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/dotfiles/nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 Plug 'The-NERD-Tree'
 Plug 'tpope/vim-surround'
@@ -103,7 +103,8 @@ let g:neomake_python_enabled_makers = ['flake8']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-let g:python3_host_prog = '/Users/paulsoh/.pyenv/versions/neovim3/bin/python'
+" let g:python3_host_prog = '/home/paulsoh/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = $NEOVIM3_PATH
 let g:deoplete#enable_at_startup = 1
 
 let NERDSpaceDelims=1
