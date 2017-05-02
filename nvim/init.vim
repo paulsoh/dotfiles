@@ -32,7 +32,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'tell-k/vim-autopep8'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-
+Plug 'skammer/vim-css-color'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -147,6 +147,7 @@ set statusline+=%{fugitive#statusline()}
 
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
 set grepprg=ag\ --vimgrep
+set backupcopy=yes
 
 nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
 
@@ -176,17 +177,17 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 " Because copying to clipboard is not supported...
-function! ClipboardYank()
-  call system('pbcopy', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('pbpaste')
-endfunction
+" function! ClipboardYank()
+  " call system('pbcopy', @@)
+" endfunction
+" function! ClipboardPaste()
+  " let @@ = system('pbpaste')
+" endfunction
 
-vnoremap <silent> y y:call ClipboardYank()<cr>
-vnoremap <silent> d d:call ClipboardYank()<cr>
-nnoremap <silent> p :call ClipboardPaste()<cr>p
-onoremap <silent> y y:call ClipboardYank()<cr>
-onoremap <silent> d d:call ClipboardYank()<cr>
+" vnoremap <silent> y y:call ClipboardYank()<cr>
+" vnoremap <silent> d d:call ClipboardYank()<cr>
+" nnoremap <silent> p :call ClipboardPaste()<cr>p
+" onoremap <silent> y y:call ClipboardYank()<cr>
+" onoremap <silent> d d:call ClipboardYank()<cr>
 
 autocmd! BufWritePost * Neomake
