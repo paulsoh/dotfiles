@@ -15,7 +15,7 @@ Plug 'mxw/vim-jsx'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neomake/neomake'
-Plug 'benjie/neomake-local-eslint.vim'
+" Plug 'benjie/neomake-local-eslint.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
@@ -32,6 +32,9 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'tell-k/vim-autopep8'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'suan/vim-instant-markdown'
+Plug 'gko/vim-coloresque'
+Plug 'nvie/vim-flake8'
 
 
 function! DoRemote(arg)
@@ -97,13 +100,12 @@ syntax enable
 " let g:neomake_javascript_enabled_makers = ['eslint']
 
 
-let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
+let g:neomake_javascript_jsx_enabled_makers = ['eslint', 'flow']
+" let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
 let g:neomake_python_enabled_makers = ['flake8']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
-let g:python3_host_prog = '/Users/paulsoh/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/home/syongseok/.pyenv/versions/neovim3/bin/python'
 let g:deoplete#enable_at_startup = 1
 
 let NERDSpaceDelims=1
@@ -149,6 +151,7 @@ set grepprg=ag\ --vimgrep
 
 nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
 
+let g:instant_markdown_open_to_the_world = 1
 
 " Key mapping
 :imap jj <ESC>
@@ -175,17 +178,21 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 " Because copying to clipboard is not supported...
-function! ClipboardYank()
-  call system('pbcopy', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('pbpaste')
-endfunction
+" function! ClipboardYank()
+  " call system('pbcopy', @@)
+" endfunction
+" function! ClipboardPaste()
+  " let @@ = system('pbpaste')
+" endfunction
 
-vnoremap <silent> y y:call ClipboardYank()<cr>
-vnoremap <silent> d d:call ClipboardYank()<cr>
-nnoremap <silent> p :call ClipboardPaste()<cr>p
-onoremap <silent> y y:call ClipboardYank()<cr>
-onoremap <silent> d d:call ClipboardYank()<cr>
+" vnoremap <silent> y y:call ClipboardYank()<cr>
+" vnoremap <silent> d d:call ClipboardYank()<cr>
+" nnoremap <silent> p :call ClipboardPaste()<cr>p
+" onoremap <silent> y y:call ClipboardYank()<cr>
+" onoremap <silent> d d:call ClipboardYank()<cr>
+
+let g:flake8_cmd="/home/syongseok/.pyenv/shims/flake8"
 
 autocmd! BufWritePost * Neomake
+" autocmd BufWritePost *.py call Flake8()
+
