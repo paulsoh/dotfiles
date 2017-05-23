@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.config/nvim/bundle')
+call plug#begin('~/dotfiles/nvim/bundle')
 
 Plug 'The-NERD-Tree'
 Plug 'tpope/vim-surround'
