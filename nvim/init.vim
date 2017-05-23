@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/dotfiles/nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 Plug 'The-NERD-Tree'
 Plug 'tpope/vim-surround'
@@ -35,7 +35,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'gko/vim-coloresque'
 Plug 'nvie/vim-flake8'
-
+Plug 'skammer/vim-css-color'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -105,7 +105,8 @@ let g:neomake_javascript_jsx_enabled_makers = ['eslint', 'flow']
 let g:neomake_python_enabled_makers = ['flake8']
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:python3_host_prog = '/home/syongseok/.pyenv/versions/neovim3/bin/python'
+
+let g:python3_host_prog = $NEOVIM3_PATH
 let g:deoplete#enable_at_startup = 1
 
 let NERDSpaceDelims=1
@@ -148,6 +149,7 @@ set statusline+=%{fugitive#statusline()}
 
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
 set grepprg=ag\ --vimgrep
+set backupcopy=yes
 
 nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
 
@@ -190,8 +192,6 @@ noremap <leader>0 :tablast<cr>
 " nnoremap <silent> p :call ClipboardPaste()<cr>p
 " onoremap <silent> y y:call ClipboardYank()<cr>
 " onoremap <silent> d d:call ClipboardYank()<cr>
-
-let g:flake8_cmd="/home/syongseok/.pyenv/shims/flake8"
 
 autocmd! BufWritePost * Neomake
 " autocmd BufWritePost *.py call Flake8()
