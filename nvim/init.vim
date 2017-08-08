@@ -1,171 +1,51 @@
-set nocompatible
-filetype off
+call plug#begin('~/.local/share/nvim/plugged')
 
-call plug#begin('~/dotfiles/nvim/bundle')
-
-Plug 'The-NERD-Tree'
-Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'w0ng/vim-hybrid'
-Plug 'mxw/vim-jsx'
-" Plug 'othree/yajs.vim'
-" Plug 'othree/es.next.syntax.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'w0rp/ale'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install —all' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neomake/neomake'
-" Plug 'benjie/neomake-local-eslint.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'flowtype/vim-flow'
-Plug 'zchee/deoplete-jedi'
-Plug 'scrooloose/nerdcommenter'
-Plug 'SirVer/ultisnips'
-Plug 'paulsoh/vim-snippets'
-" Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'mattn/emmet-vim'
-Plug 'hdima/python-syntax'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'tell-k/vim-autopep8'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'suan/vim-instant-markdown'
-Plug 'gko/vim-coloresque'
-Plug 'nvie/vim-flake8'
-Plug 'skammer/vim-css-color'
-
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-commentary'
+" Auto Pair for () {} 
+Plug 'jiangmiao/auto-pairs'
+" Do operations on surrounding tags etc
+Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
+Plug 'paulsoh/vim-snippets'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
-filetype plugin indent on
+set background=dark
+colorscheme hybrid
 
 set relativenumber 
 set number    
-
 set showmatch
 set ruler
-set autoindent
-set smartindent
-set tabstop=2 shiftwidth=2 expandtab
-
-au FileType python setl sw=4 sts=4 et
-
-" Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" Theme
-colorscheme OceanicNext
-syntax enable
-
-"let g:hybrid_custom_term_colors = 1
-"colorscheme hybrid
-"set background=dark
-"colorscheme hybrid
-" let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_italic=1
-
-" colorscheme gruvbox
-" set background=dark    " Setting dark mode
-
-" set omnifunc=syntaxcomplete#Complete
-
-"""""""""""""""""""
-" Plugin settings
-"""""""""""""""""""
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:neomake_open_list = 0
-" let g:neomake_javascript_eslint_maker = {
-"     \ 'args': ['--verbose'],
-"     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-"    \ }
-" let g:neomake_javascript_enabled_makers = ['eslint']
+set mouse=a
 
 
-let g:neomake_javascript_jsx_enabled_makers = ['eslint', 'flow']
-" let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
-let g:neomake_python_enabled_makers = ['flake8']
+" Enable tmux sessions to use clipboard
+set clipboard=unnamed
 
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 
-let g:python3_host_prog = $NEOVIM3_PATH
-let g:deoplete#enable_at_startup = 1
-
-let NERDSpaceDelims=1
-
-" Let <Tab> also do completion
-" inoremap <silent><expr> <Tab>
-" \ pumvisible() ? "\<C-n>" :
-" \ deoplete#mappings#manual_complete()
-
-imap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-
-function! s:check_back_space() "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1] =~ '\s'
-endfunction"}}}
-
-" Close the documentation window when completion is done
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-let g:AutoPairsFlyMode = 0
-
-" flowtype
-let g:flow#omnifunc = 0
-let g:flow#autoclose = 1
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:airline_theme='oceanicnext'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
-
-let python_highlight_all = 1
-
-set statusline+=%{fugitive#statusline()}
-
-" http://vim.wikia.com/wiki/Find_in_files_within_Vim
-set grepprg=ag\ --vimgrep
-set backupcopy=yes
-
-nnoremap <F4> :grep <cword> . <Bar> :cw<CR>
-
-let g:instant_markdown_open_to_the_world = 1
-
-" Key mapping
-:imap jj <ESC>
-nnoremap <esc> :noh<return><esc>
-
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-map <F7> :NERDTreeToggle<CR>
-map <C-t> :FZF<CR>
+let g:python3_host_prog = $NEOVIM3_PATH
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -179,20 +59,57 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
-" Because copying to clipboard is not supported...
-" function! ClipboardYank()
-  " call system('pbcopy', @@)
-" endfunction
-" function! ClipboardPaste()
-  " let @@ = system('pbpaste')
-" endfunction
+:nnoremap <C-g> :NERDTreeToggle<CR>
+:noremap <C-t> :FZF<CR>
 
-" vnoremap <silent> y y:call ClipboardYank()<cr>
-" vnoremap <silent> d d:call ClipboardYank()<cr>
-" nnoremap <silent> p :call ClipboardPaste()<cr>p
-" onoremap <silent> y y:call ClipboardYank()<cr>
-" onoremap <silent> d d:call ClipboardYank()<cr>
+:imap jj <ESC>
+nnoremap qq :noh<return><esc>
 
-autocmd! BufWritePost * Neomake
-" autocmd BufWritePost *.py call Flake8()
+let g:deoplete#enable_at_startup = 1
 
+let g:python_highlight_all = 1
+
+" Make TAB to move around deoplete
+" inoremap <silent><expr> <TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ deoplete#mappings#manual_complete()
+
+" function! s:check_back_space() abort "{{{
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
+" Make TAB to move around deoplete end
+
+" Closes window after deoplete completion
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Python autofix
+let g:ale_fixers = {'python': ['autopep8']}
+let g:ale_python_autopep8_options = '--aggressive'
+
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+
+call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+" Allows you to indent without cursor getting loose everytime
+
+vmap <Tab> :><CR>gv
+vmap <S-Tab> :<<CR>gv
+
+
+" Allow multiple cursors to function quickly even in large files
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if has('nvim')
+    call deoplete#disable()
+  endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if has('nvim')
+    call deoplete#enable()
+  endif
+endfunction
